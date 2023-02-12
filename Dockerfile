@@ -1,4 +1,4 @@
-FROM python:3.22-slim-buster
+FROM python:3.11-slim-buster
 
 ENV DEBUG=False
 ENV SECRET_KEY=<DJANGO_SECRET_KEY>
