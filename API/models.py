@@ -4,6 +4,9 @@ from django.db import models
 class Artist(models.Model):
     name = models.CharField(max_length=50, blank=False)
 
+    class Meta:
+        ordering = ['id']
+
     def albums(self):
         return self.album_set.all()
 
@@ -19,6 +22,9 @@ class Album(models.Model):
 
     album_songs = models.ManyToManyField('AlbumSong')
 
+    class Meta:
+        ordering = ['id']
+
     def get_album_songs(self):
         return self.album_songs.all()
 
@@ -31,6 +37,9 @@ class Album(models.Model):
 class Song(models.Model):
     name = models.CharField(max_length=50, blank=False)
     album_songs = models.ManyToManyField('AlbumSong')
+
+    class Meta:
+        ordering = ['id']
 
     def get_album_songs(self):
         return self.album_songs.all()
@@ -47,6 +56,7 @@ class AlbumSong(models.Model):
     song_number = models.IntegerField()
 
     class Meta:
+
         constraints = [
             models.UniqueConstraint(
                 fields=('album_obj', 'song_obj'),
