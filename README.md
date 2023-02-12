@@ -19,7 +19,7 @@
 
 ## Usage
 ### Swagger Web
-- Open `127.0.0.1:8000/api/schema/docs` in your browser
+- Open `127.0.0.1:8000/api/schema/docs/` in your browser
 
 ### Postman
 - `.yaml` file can be obtained with accessing `127.0.0.1:8000/api/schema/`

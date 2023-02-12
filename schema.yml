@@ -3,6 +3,22 @@ info:
   title: MUSIC API
   version: 0.0.0
 paths:
+  /api/:
+    get:
+      operationId: api_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List'
+          description: ''
   /api/albums/:
     get:
       operationId: api_albums_list
@@ -904,6 +920,14 @@ components:
       required:
       - id
       - name
+    List:
+      type: object
+      properties:
+        routes:
+          type: array
+          items: {}
+      required:
+      - routes
     PaginatedAlbumSongsList:
       type: object
       properties:

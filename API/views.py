@@ -1,11 +1,32 @@
 from django.db.models import Q
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from drf_spectacular.utils import extend_schema
 from rest_framework import exceptions
 from rest_framework.generics import (ListCreateAPIView,
-                                     RetrieveUpdateDestroyAPIView)
+                                     RetrieveUpdateDestroyAPIView, GenericAPIView)
 
 from API import models as apim
 from API import serializers as apis
 
+
+class RoutesView(APIView):
+    @extend_schema(responses=apis.ListSerializer)
+    def get(self, request):
+        routes = [
+            '/api/',
+            '/api/schema/',
+            '/api/schema/docs/',
+            '/api/artists/',
+            '/api/artists/<int:id>/',
+            '/api/songs/',
+            '/api/songs/<int:id>/',
+            '/api/albums/',
+            '/api/albums/<int:id>/',
+            '/api/albums/<int:album_id>/songs/',
+            '/api/albums/<int:album_id>/songs/<int:song_number>/',
+        ]
+        return Response({'routes': routes})
 
 class ArtistsView(ListCreateAPIView):
     queryset = apim.Artist.objects.all()

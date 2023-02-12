@@ -3,6 +3,8 @@ from rest_framework import exceptions, serializers
 
 from API import models as apim
 
+class ListSerializer(serializers.Serializer):
+    routes = serializers.ListField()
 
 class ArtistsSerializer(serializers.ModelSerializer):    
     class Meta:
